@@ -1,0 +1,15 @@
+//5.1_Create "scs_related" relationships for link prediction
+MATCH (cp:CONTROLLED_PROCESS)<-[:acts_on]-(ca:CONTROL_ACTION)-[:defined_by]->(ctrl:CONTROLLER)
+MERGE (ctrl)-[:scs_related]-(cp);
+
+//5.2_Create "scs_related" relationships for link prediction
+MATCH (cp:CONTROLLED_PROCESS)<-[:acts_on]-(ca:CONTROL_ACTION)-[:defined_by]->(act:ACTUATOR)<-[:has]-(ctrl:CONTROLLER)
+MERGE (ctrl)-[:scs_related]-(cp);
+
+//5.3_Create "scs_related" relationships for link prediction
+MATCH (cp:CONTROLLED_PROCESS)-[:defined_by]->(fb:FEEDBACK)<-[:has]-(ctrl:CONTROLLER)
+MERGE (cp)-[:scs_related]-(ctrl);
+
+//5.4_Create "scs_related" relationships for link prediction
+MATCH (cp:CONTROLLED_PROCESS)-[:has]->(se:SENSOR)-[:defined_by]->(fb:FEEDBACK)<-[:has]-(ctrl:CONTROLLER)
+MERGE (cp)-[:scs_related]-(ctrl)

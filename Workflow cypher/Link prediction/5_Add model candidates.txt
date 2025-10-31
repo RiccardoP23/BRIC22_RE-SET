@@ -1,0 +1,4 @@
+//5_Add model candidates
+CALL gds.beta.pipeline.linkPrediction.addLogisticRegression('myPipeline') YIELD parameterSpace;
+CALL gds.beta.pipeline.linkPrediction.addRandomForest('myPipeline', {numberOfDecisionTrees: 1000}) YIELD parameterSpace;
+CALL gds.alpha.pipeline.linkPrediction.addMLP('myPipeline', {hiddenLayerSizes: [4, 2], penalty: 1, patience: 2}) YIELD parameterSpace

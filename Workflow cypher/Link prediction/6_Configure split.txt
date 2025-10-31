@@ -1,0 +1,6 @@
+//6_Configure split
+CALL gds.beta.pipeline.linkPrediction.configureSplit('myPipeline', {
+        testFraction: 0.3,
+        trainFraction: 0.6,
+        validationFolds: 3
+    })

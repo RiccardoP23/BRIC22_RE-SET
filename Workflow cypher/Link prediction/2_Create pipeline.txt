@@ -1,0 +1,2 @@
+//2_Create pipeline
+CALL gds.beta.pipeline.linkPrediction.create('myPipeline')

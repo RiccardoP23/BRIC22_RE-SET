@@ -1,0 +1,13 @@
+//1_Import new ontology relationships
+LOAD CSV WITH HEADERS FROM 'file:///relationshipsfile.csv' AS row
+
+// Create nodes for "from" elements if they don't exist, with label from Label_from
+call apoc.merge.node([row.Label_from], {Element:row.Element_from}) yield node as from_node
+
+// Create nodes for "to" elements if they don't exist, with label from Label_to
+call apoc.merge.node([row.Label_to], {Element:row.Element_to}) yield node as to_node
+
+// Create relationships between the nodes
+call apoc.merge.relationship( from_node,row.Relation,{},{}, to_node) yield rel as node_rel
+
+return from_node, to_node, node_rel

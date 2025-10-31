@@ -1,0 +1,14 @@
+//2_Import new ontology properties
+LOAD CSV WITH HEADERS FROM 'file:///propertiesfile.csv' AS row
+
+// Match the node based on the "Element" property
+MATCH (n {Element: row.Element})
+
+// Collect the valid columns (excluding "Element") and their corresponding values
+WITH n, row, 
+     [col IN keys(row) WHERE col <> 'Element' AND row[col] IS NOT NULL] AS cols,
+     [col IN keys(row) WHERE col <> 'Element' AND row[col] IS NOT NULL | toFloat(row[col])] AS values
+
+// Set the properties on the node using APOC
+CALL apoc.create.setProperties(n, cols, values) YIELD node
+RETURN node

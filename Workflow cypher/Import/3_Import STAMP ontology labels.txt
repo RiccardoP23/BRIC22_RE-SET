@@ -1,0 +1,8 @@
+//2_Import new ont//3_Import STAMP ontology labels
+LOAD CSV WITH HEADERS FROM 'file:///elements_STAMP.csv' AS row
+
+// Match the nodes based on the 'Element' property and add the label from the CSV
+MATCH (n)
+WHERE n.Element = row.Element
+CALL apoc.create.addLabels(n, [row.Label]) YIELD node
+RETURN node

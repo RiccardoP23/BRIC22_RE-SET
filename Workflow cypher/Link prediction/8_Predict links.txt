@@ -1,0 +1,13 @@
+//8_Predict links
+ CALL gds.beta.pipeline.linkPrediction.predict.stream('myProjection', {
+        modelName: 'myModel',
+        topN: 500,
+        threshold: 0.5
+})
+    YIELD node1, node2, probability
+    RETURN gds.util.asNode(node1).Element AS agent1,
+           labels(gds.util.asNode(node1)) AS label_agent1,
+           gds.util.asNode(node2).Element AS agent2,
+           labels(gds.util.asNode(node2)) AS label_agent2,
+           probability
+    ORDER BY probability DESC, agent1

@@ -1,0 +1,16 @@
+//7_Train models and keep the best performing
+CALL gds.beta.pipeline.linkPrediction.train('myProjection', {
+        pipeline: 'myPipeline',
+        modelName: 'myModel',
+        metrics: ['AUCPR', 'OUT_OF_BAG_ERROR'],
+        sourceNodeLabel: 'CONTROLLER',
+        targetNodeLabel: 'CONTROLLED_PROCESS',
+        targetRelationshipType: 'scs_related',
+        randomSeed: 42
+    })
+    YIELD modelInfo, modelSelectionStats
+    RETURN modelInfo.bestParameters AS winningModel,
+           modelInfo.metrics.AUCPR.train.avg AS avgTrainScore,
+           modelInfo.metrics.AUCPR.outerTrain AS outerTrainScore,
+           modelInfo.metrics.AUCPR.test AS testScore,
+           [cand IN modelSelectionStats.modelCandidates | cand.metrics.AUCPR.validation.avg] AS validationScores

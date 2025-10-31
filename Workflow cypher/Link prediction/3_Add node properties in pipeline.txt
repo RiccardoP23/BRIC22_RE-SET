@@ -1,0 +1,8 @@
+//3_Add node properties in pipeline
+CALL gds.beta.pipeline.linkPrediction.addNodeProperty('myPipeline', 'fastRP', {
+        mutateProperty: 'embedding',
+        embeddingDimension: 256,
+        randomSeed: 42,
+        contextNodeLabels: ['CONTROL_ACTION', 'ACTIVITY', 'DOCUMENT', 'ACTUATOR', 'APPARATUS', 'MATERIAL', 'DETERIORATION_MECHANISM', 'SUBSTANCE', 'OPERATING_CONDITION', 'ORGANISATION', 'HUMAN_RESOURCE', 'SENSOR'],
+        contextRelationshipTypes: ['describes', 'has_output', 'interacts_with', 'issues', 'performs', 'involves', 'prescribes', 'belongs_to', 'is_input_of', 'causes', 'is_made_of', 'is_subjected_to', 'has', 'is_part_of', 'acts_on', 'defined_by', 'is_assigned_to', 'controls']
+   })
