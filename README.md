@@ -1,2 +1,2 @@
 # BRIC22_RE-SET
-repository per i risultati del progetto BRiC RE-SET (Resilience Engineering for Safe Energy Transition)
+Repository per i risultati del progetto BRIC RE-SET (Resilience Engineering for Safe Energy Transition) 2022 finnaziato dall'INAIL (Istituto Nazionale Assicurazione contro gli Infortuni sul Lavoro)
